@@ -117,7 +117,7 @@ $view->includeJavascript("
 
 // show widget
 $widget = '<div id="main" class="">
-        <a href="#"><div onclick="$.reset();" id="baseBread">/</div><a>
+        <a href="javascript:void(0)"><div onclick="$.reset();" id="baseBread">/</div><a>
         <div id="sequence"></div>
 
         <div id="explanation">
