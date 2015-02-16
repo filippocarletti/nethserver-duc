@@ -30,7 +30,7 @@ rm -rf $RPM_BUILD_ROOT
 (cd root; find . -depth -print | cpio -dump $RPM_BUILD_ROOT)
 %{genfilelist} $RPM_BUILD_ROOT > %{name}-%{version}-filelist
 echo "%doc COPYING" >> %{name}-%{version}-filelist
-grep -v -E '(compression.pyc|compression.pyo|pretty-JSON.pyc|pretty-JSON.pyo|xml2json.pyc|xml2json.pyo|xml-remove.pyc|xml-remove.pyo)' %{name}-%{version}-filelist > tmp-filelist
+grep -v -E '(xml2json.pyc|xml2json.pyo)' %{name}-%{version}-filelist > tmp-filelist
 mv tmp-filelist %{name}-%{version}-filelist
 
 %post

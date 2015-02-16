@@ -2,7 +2,6 @@
 // set title
 $view->includeCss('
 body {
-    overflow-x: hidden;
 }
 circle {
   fill: none;
@@ -10,16 +9,17 @@ circle {
 }
 
 .sidebar-elem {
-    height: 24px;
-    text-align: center;
-    line-height: 24px;
-    color: white;
-    font-weight: 800;
-    margin: 2px;
+  height: 24px;
+  text-align: center;
+  line-height: 24px;
+  color: white;
+  font-weight: 800;
+  margin: 2px;
 }
 
 #main {
   float: left;
+  display: none;
 }
 
 #sidebar {
@@ -30,7 +30,7 @@ circle {
 
 #sequence {
   width: 600px;
-  height: 70px;
+  height: 40px;
   float: left;
 }
 
@@ -50,14 +50,17 @@ circle {
   color: white;
 }
 
+#chart {
+  margin-top: -20px;
+  margin-bottom: -80px;
+}
+
 #chart path {
   stroke: #fff;
 }
 
 #explanation {
-  margin: auto;
-  position: absolute;
-  top:90px; left: 0; bottom: 80%; right: 0;
+  margin-top: 50px;
   text-align: center;
   color: #666;
   z-index: 10;
@@ -68,44 +71,66 @@ circle {
 }
 #nameFolder {
   font-size: 20px;
-  margin: 5px;
+  margin-top: 20px;
 }
 #sizeFolder {
   font-size: 2.5em;
   margin: 5px;
 }
+
+#updateInfo div.TextLabel {
+  font-size: 14px;
+  color: #666;
+  font-weight: 600;
+}
 ');
 
 $modulePath = $view->getModuleUrl();
+
+$dateTarget = $view->getClientEventTarget('date');
 
 $view->includeFile('NethServer/Js/d3.v3.min.js');
 $view->includeFile('NethServer/Js/sequences.js');
 $view->includeFile('NethServer/Js/filesize.js');
 $view->includeJavascript("
 (function($){
-
-    $(function() {
+    var updateGraph = function() {
         var cv;
+        $('#chart').empty();
 
         $.ajax('${modulePath}?get_json').done(function(data) {
 
-        if(! cv) {
-             cv = $.duc();
-        }
-           cv(data);
+            if(data) {
+                if(!cv) {
+                    cv = $.duc();
+                }
+                cv(data);
+                $('#main').show();
+            }
         });
-    });
+
+    };
+    $(updateGraph);
+    $('.${dateTarget}').on('nethguiupdateview', updateGraph);
 }(jQuery));
 ");
 
 // show widget
-echo '<div id="main" class="">
-        <div id="baseBread">/</div>
+$widget = '<div id="main" class="">
+        <a href="#"><div onclick="$.reset();" id="baseBread">/</div><a>
         <div id="sequence"></div>
+
         <div id="explanation">
             <p id="nameFolder">/</p>
             <p id="sizeFolder"></p>
         </div>
+
         <div id="chart">
         </div>
+</div>
+<div id="updateInfo">
+'.$view->buttonList()->insert($view->button('Update', $view::BUTTON_SUBMIT)).
+$view->textLabel('date')->setAttribute('template', $T('Updated on ${0}'))->setAttribute('tag','div') .'
 </div>';
+
+echo $widget;

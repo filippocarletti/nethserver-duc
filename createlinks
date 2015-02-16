@@ -23,12 +23,10 @@ use strict;
 use esmith::Build::CreateLinks qw(:all);
 
 #
-# nethserver-duc-update event
+# nethserver-duc-save event
 #
-
-my $event = 'nethserver-duc-update';
+my $event = 'nethserver-duc-save';
 
 event_actions($event, qw(
-      initialize-default-databases 00
-      nethserver-duc-conf 20
+      nethserver-duc-index 20
 ));

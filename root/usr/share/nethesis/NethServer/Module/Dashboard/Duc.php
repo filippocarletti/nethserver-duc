@@ -24,13 +24,35 @@ use Nethgui\System\PlatformInterface as Validate;
 
 class Duc extends \Nethgui\Controller\AbstractController
 {
-    const DUC_PATH='/var/cache/duc.json';
+    const DUC_PATH='/var/cache/duc/duc.json';
+
+    public $sortId = NULL;
 
     public function prepareView(\Nethgui\View\ViewInterface $view) {
         if($this->getRequest()->hasParameter('get_json')) {
            header('Content-type: application/json; charset: utf-8');
            echo $this->getPhpWrapper()->file_get_contents(self::DUC_PATH);
            exit();
+        }
+        parent::prepareView($view);
+         // get stat info of duc.json file
+        $stat = $this->getPhpWrapper()->stat('/var/cache/duc/duc.json');
+        if($stat) {
+             $timestamp = $stat['mtime'];
+             $date = $this->getPhpWrapper()->gmdate($view->translate('Date_Format'), $timestamp);
+        } else {
+             $date = $view->translate('Not_Updated_Duc_Label');
+        }
+        $view['date'] = $date;
+    }
+
+    public function process()
+    {
+        parent::process();
+
+        if ($this->getRequest()->isMutation()) {
+            // Signal nethserver-duc-save event
+            $this->getPlatform()->signalEvent('nethserver-duc-save &');
         }
     }
 }

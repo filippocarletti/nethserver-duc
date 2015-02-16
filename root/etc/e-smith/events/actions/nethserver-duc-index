@@ -18,7 +18,16 @@
 # You should have received a copy of the GNU General Public License
 # along with NethServer.  If not, see <http://www.gnu.org/licenses/>.
 #
-# launch duc to index root directory
-/etc/cron.daily/duc
+INDEX_DIR='/'
+JSON_DIR='/var/cache/duc'
+DUC_DB=$JSON_DIR/duc.db
+SIZE=1024
 
-exit 0
+# directory indexing
+/usr/bin/duc index $INDEX_DIR --database=$DUC_DB
+
+# parse db into xml
+/usr/bin/duc xml --min-size $SIZE --exclude-files --database=$DUC_DB $INDEX_DIR > $JSON_DIR/tree.xml
+
+# convert in file json and strip lines
+/usr/share/duc/xml2json.py $JSON_DIR/tree.xml > $JSON_DIR/duc.json
