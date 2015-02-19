@@ -3,8 +3,8 @@
 
 Summary:    Analysis of space and usage of disk
 Name:       nethserver-duc
-Version:    0.0.1
-Release:    1%{?dist}
+Version: 1.0.0
+Release: 1%{?dist}
 License:    GPL
 URL:        %{url_prefix}/%{name}
 Source0:    %{name}-%{version}.tar.gz
@@ -41,5 +41,8 @@ mv tmp-filelist %{name}-%{version}-filelist
 %defattr(-,root,root)
 
 %changelog
+* Thu Feb 19 2015 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.0.0-1
+- Dashboard widget for disk utilization - Feature #2687 [NethServer]
+
 * Mon Feb 9 2015 Edoardo Spadoni <edoardo.spadoni@nethesis.it> - 1.0
 - first release
