@@ -21,7 +21,7 @@
 INDEX_DIR='/'
 JSON_DIR='/var/cache/duc'
 DUC_DB=$JSON_DIR/duc.db
-SIZE=1024
+SIZE=10000000
 
 # directory indexing
 /usr/bin/duc index $INDEX_DIR --database=$DUC_DB

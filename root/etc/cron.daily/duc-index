@@ -1,2 +1,2 @@
 #!/bin/bash
-/etc/e-smith/events/actions/nethserver-duc-index
+/etc/e-smith/events/actions/nethserver-duc-index 2> /dev/null
