@@ -37,6 +37,7 @@ import json
 import optparse
 import sys
 import os
+import ast
 
 import xml.etree.cElementTree as ET
 
@@ -51,7 +52,6 @@ def elem_to_internal(elem, strip_ns=1, strip=1):
 
     for subelem in elem:
         v = elem_to_internal(subelem, strip_ns=strip_ns, strip=strip)
-
         tag = subelem.tag
         value = v[tag]
         tag = 'children'
@@ -61,7 +61,7 @@ def elem_to_internal(elem, strip_ns=1, strip=1):
         except AttributeError:
             d[tag] = [d[tag], value]
         except KeyError:
-            d[tag] = value
+            d[tag] = ast.literal_eval('['+str(value)+']')
 
     return {elem_tag: d}
 
