@@ -5,7 +5,7 @@
       // Dimensions of sunburst.
       var width = window.innerWidth - 360;
       var height = window.innerHeight - 200;
-      var radius = Math.min(width, height)/3;
+      var radius = Math.min(width, height)/2.5;
 
       var total = 0;
       var breadCumbText = window.innerWidth*6/1920;
