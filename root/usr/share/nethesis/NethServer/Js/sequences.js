@@ -32,7 +32,6 @@
           .attr("transform", "translate(" + (width) / 2 + "," + height / 2.3 + ")");
 
       var partition = d3.layout.partition()
-          .sort(function(d) {  return d.size; })
           .value(function(d) {  return d.size; });
 
       var arc = d3.svg.arc()
