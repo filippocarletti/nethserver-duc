@@ -3,7 +3,7 @@
 
 Summary:    Analysis of space and usage of disk
 Name:       nethserver-duc
-Version: 1.0.0
+Version: 1.0.1
 Release: 1%{?dist}
 License:    GPL
 URL:        %{url_prefix}/%{name}
@@ -41,6 +41,10 @@ mv tmp-filelist %{name}-%{version}-filelist
 %defattr(-,root,root)
 
 %changelog
+* Tue Mar 03 2015 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.0.1-1
+- DUC (Disk Usage): Backup directory visualized in the graph - Bug #3062 [NethServer]
+- Disk usage dashboard panel misses some directories - Bug #3057 [NethServer]
+
 * Thu Feb 19 2015 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.0.0-1
 - Dashboard widget for disk utilization - Feature #2687 [NethServer]
 
