@@ -117,17 +117,19 @@ def elem2json(elem, options, strip_ns=1, strip=1):
     if hasattr(elem, 'getroot'):
         elem = elem.getroot()
 
-    a = splitall()[1:]
-    if(a[-1] == ""):
-        a = a[:-1]
+    a = splitall()
+    if a:
+        a = a[1:]
+        if(a[-1] == ""):
+            a = a[:-1]
 
-    # remove backup dir elem
-    for child in elem:
-        if(child.attrib['name'] == a[0]):
-            size = recToDelete(child, a)
-            child.attrib['size'] = str(int(child.attrib['size']) - size)
-            if(int(child.attrib['size']) < MIN_SIZE):
-                elem.remove(child)
+        # remove backup dir elem
+        for child in elem:
+            if(child.attrib['name'] == a[0]):
+                size = recToDelete(child, a)
+                child.attrib['size'] = str(int(child.attrib['size']) - size)
+                if(int(child.attrib['size']) < MIN_SIZE):
+                    elem.remove(child)
 
     # remove fake folder
     for child in elem:
