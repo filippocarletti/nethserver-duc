@@ -26,7 +26,7 @@ class Duc extends \Nethgui\Controller\AbstractController
 {
     const DUC_PATH='/var/cache/duc/duc.json';
 
-    public $sortId = NULL;
+    public $sortId = 40;
 
     public function prepareView(\Nethgui\View\ViewInterface $view) {
         if($this->getRequest()->hasParameter('get_json')) {
