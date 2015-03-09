@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# Copyright (C) 2013 Nethesis S.r.l.
+# Copyright (C) 2015 Nethesis S.r.l.
 # http://www.nethesis.it - support@nethesis.it
 #
 # This script is part of NethServer.
@@ -22,11 +22,10 @@
 use strict;
 use esmith::Build::CreateLinks qw(:all);
 
-#
-# nethserver-duc-save event
-#
-my $event = 'nethserver-duc-save';
-
-event_actions($event, qw(
+event_actions('nethserver-duc-save', qw(
       nethserver-duc-index 20
+));
+
+event_actions('system-init', qw(
+      nethserver-duc-index 70
 ));
