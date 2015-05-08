@@ -20,7 +20,10 @@ Visualize the space and the usage of your disk.
 
 %build
 perl createlinks
-install -d root/%{_nseventsdir}/%{name}-update
+install -d \
+   root/%{_nseventsdir}/%{name}-update \
+   root/var/cache/duc \
+   root/usr/share/duc
 
 %install
 rm -rf %{buildroot}
@@ -31,7 +34,8 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc COPYING
 %dir %{_nseventsdir}/%{name}-update
-
+%dir /var/cache/duc
+%dir /usr/share/duc
 
 %changelog
 * Thu Mar 12 2015 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.0.3-1
