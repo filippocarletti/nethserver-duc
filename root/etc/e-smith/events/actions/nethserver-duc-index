@@ -24,10 +24,10 @@ DUC_DB=$JSON_DIR/duc.db
 SIZE=10000000
 
 # directory indexing
-/usr/bin/duc index $INDEX_DIR --database=$DUC_DB
+/usr/bin/duc index $INDEX_DIR -d $DUC_DB
 
 # parse db into xml
-/usr/bin/duc xml --min-size $SIZE --exclude-files --database=$DUC_DB $INDEX_DIR > $JSON_DIR/tree.xml
+/usr/bin/duc xml -s $SIZE -x -d $DUC_DB $INDEX_DIR > $JSON_DIR/tree.xml
 
 # convert in file json and strip lines
 /usr/share/duc/xml2json.py $JSON_DIR/tree.xml > $JSON_DIR/duc.json
