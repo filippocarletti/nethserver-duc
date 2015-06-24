@@ -1,5 +1,5 @@
 <?php
-namespace NethServer\Module\Dashboard;
+namespace NethServer\Module;
 /*
  * Copyright (C) 2013 Nethesis S.r.l.
  * http://www.nethesis.it - support@nethesis.it
@@ -20,13 +20,17 @@ namespace NethServer\Module\Dashboard;
  * along with NethServer.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-use Nethgui\System\PlatformInterface as Validate;
-
 class Duc extends \Nethgui\Controller\AbstractController
 {
     const DUC_PATH='/var/cache/duc/duc.json';
 
     public $sortId = 40;
+
+    protected function initializeAttributes(\Nethgui\Module\ModuleAttributesInterface $attributes)
+    {
+        $a = \Nethgui\Module\SimpleModuleAttributesProvider::extendModuleAttributes($attributes, 'Status');
+        return new \NethServer\Tool\CustomModuleAttributesProvider($a, array('languageCatalog' => array('NethServer_Module_Duc', 'NethServer_Module_Dashboard_Duc')));
+    }
 
     public function prepareView(\Nethgui\View\ViewInterface $view) {
         if($this->getRequest()->hasParameter('get_json')) {

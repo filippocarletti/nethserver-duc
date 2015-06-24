@@ -1,4 +1,9 @@
 <?php
+
+/* @var $view \Nethgui\Renderer\Xhtml */
+
+echo $view->header()->setAttribute('template', $T('Duc_Title'));
+
 // set title
 $view->includeCss('
 body {
