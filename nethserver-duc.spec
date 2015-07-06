@@ -3,7 +3,7 @@
 
 Summary:    Analysis of space and usage of disk
 Name:       nethserver-duc
-Version: 1.0.3
+Version: 1.0.4
 Release: 1%{?dist}
 License:    GPL
 URL:        %{url_prefix}/%{name}
@@ -41,6 +41,9 @@ mv tmp-filelist %{name}-%{version}-filelist
 %defattr(-,root,root)
 
 %changelog
+* Mon Jul 06 2015 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.0.4-1
+- Move out "Disk usage" from Dashboard - Enhancement #3204 [NethServer]
+
 * Thu Mar 12 2015 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.0.3-1
 - DUC dashboard: wrong tab order - Bug #3077 [NethServer]
 
