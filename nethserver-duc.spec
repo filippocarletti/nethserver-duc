@@ -38,6 +38,9 @@ rm -rf %{buildroot}
 %dir /usr/share/duc
 
 %changelog
+* Mon Jul 06 2015 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.0.4-1
+- Move out "Disk usage" from Dashboard - Enhancement #3204 [NethServer]
+
 * Thu Mar 12 2015 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.0.3-1
 - DUC dashboard: wrong tab order - Bug #3077 [NethServer]
 
