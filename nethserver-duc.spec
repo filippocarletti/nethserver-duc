@@ -1,6 +1,6 @@
 Summary:    Analysis of space and usage of disk
 Name:       nethserver-duc
-Version: 1.0.3
+Version: 1.3.3
 Release: 1%{?dist}
 License:    GPL
 URL:        %{url_prefix}/%{name}
@@ -8,7 +8,7 @@ Source0:    %{name}-%{version}.tar.gz
 BuildArch:  noarch
 
 Requires:   nethserver-base
-Requires:   duc
+Requires:   duc >= 1.3.3
 
 BuildRequires: nethserver-devtools
 

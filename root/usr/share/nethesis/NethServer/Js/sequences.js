@@ -32,7 +32,7 @@
           .attr("transform", "translate(" + (width) / 2 + "," + height / 2.3 + ")");
 
       var partition = d3.layout.partition()
-          .value(function(d) {  return d.size; });
+          .value(function(d) {  return d.size_actual; });
 
       var arc = d3.svg.arc()
           .startAngle(function(d) { return Math.max(0, Math.min(2 * Math.PI, x(d.x))); })
@@ -71,7 +71,7 @@
         d3.selectAll("input").on("change", function change() {
           var value = this.value === "count"
               ? function() { return 1; }
-              : function(d) { return d.size; };
+              : function(d) { return d.size_actual; };
 
           path
               .data(partition.value(value).nodes)
@@ -81,7 +81,7 @@
         });
 
         var sizeFolder = document.getElementById('sizeFolder');
-        sizeFolder.innerHTML = filesize(root.size);
+        sizeFolder.innerHTML = filesize(root.size_actual);
 
         // Basic setup of page elements.
         initializeBreadcrumbTrail();
@@ -135,7 +135,7 @@
             .text("/");
 
         d3.select("#sizeFolder")
-            .text(filesize(d.size));
+            .text(filesize(d.size_actual));
       }
 
       function mouseover(d) {
@@ -149,7 +149,7 @@
 
 
         d3.select("#sizeFolder")
-            .text(filesize(d.size));
+            .text(filesize(d.size_actual));
 
         d3.select("#explanation")
             .style("visibility", "");
@@ -157,7 +157,7 @@
 
 
         var sequenceArray = getAncestors(d);
-        updateBreadcrumbs(sequenceArray, d.size);
+        updateBreadcrumbs(sequenceArray, d.size_actual);
         // Fade all the segments.
         d3.selectAll("path")
             .style("opacity", 0.3);
