@@ -34,8 +34,6 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc COPYING
 %dir %{_nseventsdir}/%{name}-update
-%dir /var/cache/duc
-%dir /usr/share/duc
 
 %changelog
 * Mon Jul 06 2015 Giacomo Sanchietti <giacomo.sanchietti@nethesis.it> - 1.0.4-1
