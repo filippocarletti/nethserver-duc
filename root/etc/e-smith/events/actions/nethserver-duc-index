@@ -30,4 +30,4 @@ SIZE=10000000
 /usr/bin/duc xml -s $SIZE -x -d $DUC_DB $INDEX_DIR > $JSON_DIR/tree.xml
 
 # convert in file json and strip lines
-/usr/share/duc/xml2json.py $JSON_DIR/tree.xml > $JSON_DIR/duc.json
+/usr/share/duc/xml2json $JSON_DIR/tree.xml > $JSON_DIR/duc.json
